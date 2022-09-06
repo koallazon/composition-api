@@ -19,6 +19,13 @@
   -webkit-text-size-adjust: 100%;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+    padding: 0;
+}
+
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -41,14 +48,109 @@ a:hover {
 
 body {
   margin: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 1.5rem;
+  width: 100%;
+}
+
+section {
+  display: grid;
+  grid-auto-rows: minmax(40px, auto);
+  border: 2px solid #ccc;
+  border-radius: 1rem;
+  padding: 20px;
+  text-align: left;
+}
+
+#user {
+  grid-template-columns: 120px calc(100% - 120px);
+  grid-template-areas: 
+    'title title'
+    'label input'
+}
+
+#user > p {
+  font-size: 1.2rem;
+  font-weight: 700;
+  grid-area: title;
+}
+
+#user > label {
+  grid-area: label;
   display: flex;
-  min-width: 320px;
-  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+#user > input {
+  grid-area: input;
+}
+
+#product {
+  grid-template-columns: 1fr 120px 120px;
+  grid-template-areas:
+      'name button1 button2'
+      'list list list'
+  ;
+  grid-gap: 20px;
+}
+
+#product > p {
+  font-size: 1.2rem;
+  font-weight: 700;
+  grid-area: name;
+  line-height: 40px;
+}
+
+#product > button:first-child {
+  grid-area: button1;
+}
+
+#product > button:lsst-child {
+  grid-area: button2;
+}
+
+#product > ul {
+  grid-area: list;
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  grid-gap: 15px;
+}
+
+#product > ul > li {
+  font-size: 1rem;
+  color: #000;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: #efefef;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+ul {
+  padding: unset;
+}
+
+li {
+  list-style: none;
+}
+
+input {
+  min-height: 40px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #eee;
+  color: #000;
 }
 
 button {
@@ -81,18 +183,6 @@ button:focus-visible {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
-* {
-  margin: 0;
-  padding: 0;
-}
-
-ul {
-  padding: unset;
-}
-
-li {
-  list-style: none;
 }
 
 @media (prefers-color-scheme: light) {

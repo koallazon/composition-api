@@ -20,24 +20,23 @@ export default {
           color: "red1",
         },
       ],
-    };
+    }
   },
   computed: {
     hasProduct() {
-      return this.products.length > 0;
+      return this.products.length > 0
     },
     filteredProducts() {
-      let conditions = (item) => true;
-      if (this.filterType === "STOCK")
-        conditions = (item) => item.inventory > 0;
-      return this.products.filter(conditions);
+      let conditions = (item) => true
+      if (this.filterType === "STOCK") conditions = (item) => item.inventory > 0
+      return this.products.filter(conditions)
     },
   },
   methods: {
     changeFilterType(type) {
       if (!["ALL", "STOCK"].includes(type))
-        throw new Error("invalid type params");
-      this.filterType = type;
+        throw new Error("invalid type params")
+      this.filterType = type
     },
   },
-};
+}
