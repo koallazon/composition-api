@@ -20,6 +20,6 @@ export default {
         },
       ],
       brands: ["ACG", "NikeLab", "나이키 스포츠웨어", "조던"],
-    };
+    }
   },
-};
+}
