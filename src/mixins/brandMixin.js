@@ -1,25 +1,44 @@
 export default {
   data() {
     return {
-      name: "Nike",
+      name: 'Nike',
       icons: [
         {
-          name: "에어포스1",
+          id: 1,
+          name: '에어포스1',
+          active: false,
         },
         {
-          name: "나이키덩크",
+          id: 2,
+          name: '나이키덩크',
+          active: false,
         },
         {
-          name: "데이브레이크",
+          id: 3,
+          name: '데이브레이크',
+          active: false,
         },
         {
-          name: "인피니티 런",
+          id: 4,
+          name: '인피니티 런',
+          active: false,
         },
         {
-          name: "블레이저",
+          id: 5,
+          name: '블레이저',
+          active: false,
         },
       ],
-      brands: ["ACG", "NikeLab", "나이키 스포츠웨어", "조던"],
     }
+  },
+  methods: {
+    changeActiveStatus(id) {
+      const findItem = this.icons.findIndex((v) => v.id === id)
+      if (findItem < 0) return
+      this.icons.splice(findItem, 1, {
+        ...this.icons[findItem],
+        active: !this.icons[findItem].active,
+      })
+    },
   },
 }

@@ -1,17 +1,21 @@
 <script setup>
-import { useRouter } from "vue-router"
+import { provide, readonly } from 'vue'
+import { useRouter } from 'vue-router'
+import useMouse from './composables/useMouse.js'
+
 const router = useRouter()
 const routes = router.options?.routes ?? []
+const { x, y } = useMouse()
+provide('x', readonly(x))
+provide('y', readonly(y))
 </script>
 
 <template>
   <nav>
-    <template v-for="(route, index) in routes">
-      <router-link
-        v-text="route.name"
-        :to="route.path"
-        :class="{ active: router.currentRoute?.name === route.name }"
-      />
+    <template v-for="(route, index) in routes" :key="index">
+      <router-link :to="route.path" :class="{ active: router.currentRoute?.name === route.name }">
+        {{ route.name }}
+      </router-link>
       <span v-if="index < routes.length - 1">|</span>
     </template>
   </nav>

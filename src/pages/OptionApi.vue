@@ -1,18 +1,18 @@
 <template>
   <div class="container">
     <section id="user">
-      <p>{{ welcomeText }}</p>
+      <h3>{{ welcomeText }}</h3>
       <label for="username" class="font-bold">사용자 이름</label>
       <input
-        :value="username"
         id="username"
+        :value="username"
         type="text"
         class="text-base grow ml-3"
         @input="changeName"
       />
     </section>
     <section id="product">
-      <p>{{ productName }}</p>
+      <h3>{{ productName }}</h3>
       <BaseButton label="전체" @click="changeFilterType" />
       <BaseButton label="재고" value="STOCK" @click="changeFilterType" />
       <ul v-if="hasProduct">
@@ -25,58 +25,81 @@
       </ul>
       <div v-else>제품이 없습니다.</div>
     </section>
+    <section id="brand">
+      <h3>{{ brandName }}</h3>
+      <h4>Icons</h4>
+      <ul>
+        <Card
+          v-for="(icon, index) in icons"
+          :key="index"
+          :item="icon"
+          @click="changeActiveStatus"
+        />
+      </ul>
+    </section>
   </div>
 </template>
 
 <script>
-import BaseButton from "../components/BaseButton.vue"
+import BaseButton from '../components/BaseButton.vue'
+import Card from '../components/Card.vue'
 
 export default {
   components: {
     BaseButton,
+    Card,
   },
   data() {
     return {
-      productName: "에어 조던 6 레트로",
-      filterType: "ALL",
+      productName: '에어 조던 6 레트로',
+      filterType: 'ALL',
       products: [
         {
           size: 250,
           inventory: 30,
-          color: "white",
+          color: 'white',
         },
         {
           size: 260,
           inventory: 0,
-          color: "black",
+          color: 'black',
         },
         {
           size: 270,
           inventory: 20,
-          color: "red1",
+          color: 'red1',
         },
       ],
-      brandName: "Nike",
+      brandName: 'Nike',
       icons: [
         {
-          name: "에어포스1",
+          id: 1,
+          name: '에어포스1',
+          active: false,
         },
         {
-          name: "나이키덩크",
+          id: 2,
+          name: '나이키덩크',
+          active: false,
         },
         {
-          name: "데이브레이크",
+          id: 3,
+          name: '데이브레이크',
+          active: false,
         },
         {
-          name: "인피니티 런",
+          id: 4,
+          name: '인피니티 런',
+          active: false,
         },
         {
-          name: "블레이저",
+          id: 5,
+          name: '블레이저',
+          active: false,
         },
       ],
-      brands: ["ACG", "NikeLab", "나이키 스포츠웨어", "조던"],
-      username: "홍길동",
-      userId: "frontman",
+      username: '홍길동',
+      userId: 'frontman',
     }
   },
   computed: {
@@ -85,26 +108,31 @@ export default {
     },
     filteredProducts() {
       let conditions = (item) => true
-      if (this.filterType === "STOCK") conditions = (item) => item.inventory > 0
+      if (this.filterType === 'STOCK') conditions = (item) => item.inventory > 0
       return this.products.filter(conditions)
     },
     loggedIn() {
       return !!this.userId
     },
     welcomeText() {
-      return this.loggedIn
-        ? `${this.username}님 환영합니다.`
-        : "로그인이 필요합니다."
+      return this.loggedIn ? `${this.username}님 환영합니다.` : '로그인이 필요합니다.'
     },
   },
   methods: {
     changeFilterType(type) {
-      if (!["ALL", "STOCK"].includes(type))
-        throw new Error("invalid type params")
+      if (!['ALL', 'STOCK'].includes(type)) throw new Error('invalid type params')
       this.filterType = type
     },
     changeName(e) {
       this.username = e.target.value?.trim()
+    },
+    changeActiveStatus(id) {
+      const findItem = this.icons.findIndex((v) => v.id === id)
+      if (findItem < 0) return
+      this.icons.splice(findItem, 1, {
+        ...this.icons[findItem],
+        active: !this.icons[findItem].active,
+      })
     },
   },
 }

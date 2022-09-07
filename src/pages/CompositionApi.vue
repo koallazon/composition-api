@@ -1,18 +1,18 @@
 <template>
   <div class="container">
     <section id="user">
-      <p>{{ welcomeText }}</p>
+      <h3>{{ welcomeText }}</h3>
       <label for="username" class="font-bold">사용자 이름</label>
       <input
-        :value="username"
         id="username"
+        :value="username"
         type="text"
         class="text-base grow ml-3"
         @input="changeName"
       />
     </section>
     <section id="product">
-      <p>{{ productName }}</p>
+      <h3>{{ productName }}</h3>
       <BaseButton label="전체" @click="changeFilterType" />
       <BaseButton label="재고" value="STOCK" @click="changeFilterType" />
       <ul v-if="hasProduct">
@@ -25,82 +25,109 @@
       </ul>
       <div v-else>제품이 없습니다.</div>
     </section>
+    <section id="brand">
+      <h3>{{ brandName }}</h3>
+      <h4>Icons</h4>
+      <ul>
+        <Card
+          v-for="(icon, index) in icons"
+          :key="index"
+          :item="icon"
+          @click="changeActiveStatus"
+        />
+      </ul>
+    </section>
   </div>
 </template>
 
 <script>
-import { ref, reactive, computed } from "vue"
-import BaseButton from "../components/BaseButton.vue"
+import { ref, reactive, computed } from 'vue'
+import BaseButton from '../components/BaseButton.vue'
+import Card from '../components/Card.vue'
 
 export default {
   components: {
     BaseButton,
+    Card,
   },
   setup() {
     // state
-    const productName = ref("에어 조던 6 레트로")
-    const filterType = ref("ALL")
+    const productName = ref('에어 조던 6 레트로')
+    const filterType = ref('ALL')
     const products = reactive([
       {
         size: 250,
         inventory: 30,
-        color: "white",
+        color: 'white',
       },
       {
         size: 260,
         inventory: 0,
-        color: "black",
+        color: 'black',
       },
       {
         size: 270,
         inventory: 20,
-        color: "red1",
+        color: 'red1',
       },
     ])
-    const brandName = ref("Nike")
-    const icons = reactive([
+    const brandName = ref('Nike')
+    const icons = ref([
       {
-        name: "에어포스1",
+        id: 1,
+        name: '에어포스1',
+        active: false,
       },
       {
-        name: "나이키덩크",
+        id: 2,
+        name: '나이키덩크',
+        active: false,
       },
       {
-        name: "데이브레이크",
+        id: 3,
+        name: '데이브레이크',
+        active: false,
       },
       {
-        name: "인피니티 런",
+        id: 4,
+        name: '인피니티 런',
+        active: false,
       },
       {
-        name: "블레이저",
+        id: 5,
+        name: '블레이저',
+        active: false,
       },
     ])
-    const brands = reactive(["ACG", "NikeLab", "나이키 스포츠웨어", "조던"])
-    const username = ref("홍길동")
-    const userId = ref("frontman")
+    const username = ref('홍길동')
+    const userId = ref('frontman')
 
     // computed
     const hasProduct = computed(() => products.length > 0)
     const filteredProducts = computed(() => {
       let conditions = (item) => true
-      if (filterType.value === "STOCK")
-        conditions = (item) => item.inventory > 0
+      if (filterType.value === 'STOCK') conditions = (item) => item.inventory > 0
       return products.filter(conditions)
     })
     const loggedIn = computed(() => !!userId.value)
     const welcomeText = computed(() =>
-      loggedIn.value
-        ? `${username.value}님 환영합니다.`
-        : "로그인이 필요합니다."
+      loggedIn.value ? `${username.value}님 환영합니다.` : '로그인이 필요합니다.'
     )
     // function
-    function changeFilterType(type) {
-      if (!["ALL", "STOCK"].includes(type))
-        throw new Error("invalid type params")
+    const changeFilterType = (type) => {
+      if (!['ALL', 'STOCK'].includes(type)) throw new Error('invalid type params')
       filterType.value = type
     }
-    function changeName(e) {
+    const changeName = (e) => {
       username.value = e.target.value?.trim()
+    }
+    const changeActiveStatus = (id) => {
+      const findItem = icons.value.findIndex((v) => v.id === id)
+      if (findItem < 0) return
+      icons.value.splice(findItem, 1, {
+        ...icons.value[findItem],
+        active: !icons.value[findItem].active,
+      })
     }
 
     return {
@@ -109,7 +136,6 @@ export default {
       products,
       brandName,
       icons,
-      brands,
       username,
       userId,
       hasProduct,
@@ -117,6 +143,7 @@ export default {
       welcomeText,
       changeFilterType,
       changeName,
+      changeActiveStatus,
     }
   },
 }

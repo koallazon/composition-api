@@ -22,9 +22,8 @@
 * {
   box-sizing: border-box;
   margin: 0;
-    padding: 0;
+  padding: 0;
 }
-
 
 a {
   font-weight: 500;
@@ -68,16 +67,26 @@ section {
   text-align: left;
 }
 
-#user {
-  grid-template-columns: 120px calc(100% - 120px);
-  grid-template-areas: 
-    'title title'
-    'label input'
-}
-
-#user > p {
+section > h3 {
   font-size: 1.2rem;
   font-weight: 700;
+}
+
+section h4 {
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 2rem;
+}
+
+#user {
+  grid-template-columns: 120px calc(100% - 120px);
+  grid-template-areas:
+    'title title'
+    'label input';
+}
+
+#user > h3 {
   grid-area: title;
 }
 
@@ -95,15 +104,12 @@ section {
 #product {
   grid-template-columns: 1fr 120px 120px;
   grid-template-areas:
-      'name button1 button2'
-      'list list list'
-  ;
+    'name button1 button2'
+    'list list list';
   grid-gap: 20px;
 }
 
-#product > p {
-  font-size: 1.2rem;
-  font-weight: 700;
+#product > h3 {
   grid-area: name;
   line-height: 40px;
 }
@@ -131,9 +137,29 @@ section {
   background-color: #efefef;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+#brand > ul {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 80px;
+  grid-gap: 10px;
+}
+
+#brand .card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  background-color: #555;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+#brand .card.active {
+  color: #000;
+  background-color: #ccc;
 }
 
 ul {
@@ -172,10 +198,6 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-.card {
-  padding: 2em;
 }
 
 #app {

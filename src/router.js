@@ -1,32 +1,32 @@
-import { createRouter, createWebHistory } from "vue-router"
+import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: "/",
-      name: "Home",
-      component: () => import("./pages/Home.vue"),
+      path: '/options-api',
+      name: 'Option-API',
+      component: () => import('./pages/OptionApi.vue'),
     },
     {
-      path: "/options-api",
-      name: "Option-API",
-      component: () => import("./pages/OptionApi.vue"),
+      path: '/mixins',
+      name: 'Mixins',
+      component: () => import('./pages/Mixins.vue'),
     },
     {
-      path: "/mixins",
-      name: "Mixins",
-      component: () => import("./pages/Mixins.vue"),
+      path: '/composition-api',
+      name: 'Composition-API',
+      component: () => import('./pages/CompositionApi.vue'),
     },
     {
-      path: "/composition-api",
-      name: "Composition-API",
-      component: () => import("./pages/CompositionApi.vue"),
+      path: '/setup-script',
+      name: 'Setup-script',
+      component: () => import('./pages/CompositionApiSetupScript.vue'),
     },
     {
-      path: "/composition-api-setup-script",
-      name: "Composition-API-etup-script",
-      component: () => import("./pages/CompositionApiSetupScript.vue"),
+      path: '/dependency-injection',
+      name: 'Dependency-Injection',
+      component: () => import('./pages/DependencyInjection.vue'),
     },
   ],
 })
