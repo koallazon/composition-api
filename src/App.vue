@@ -2,16 +2,14 @@
 import { provide, readonly, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import useMouse from './composables/useMouse.js'
-import VueSetup from './components/vue3_setup.vue'
-const testClass = ref('hot')
+// import ExposeParent from './components/ExposeParent.vue'
+// import SetupContext from './components/SetupContext.vue'
+import WatchEffectSample from './components/WatchEffect.vue'
 const router = useRouter()
 const routes = router.options?.routes ?? []
 const { x, y } = useMouse()
 provide('x', readonly(x))
 provide('y', readonly(y))
-setTimeout(() => {
-  testClass.value = 'cold'
-}, 2000)
 </script>
 
 <template>
@@ -26,13 +24,18 @@ setTimeout(() => {
   <main>
     <RouterView />
   </main>
-  <div>
-    <vue-setup id="id1" :class="testClass" :title="testClass">
-      <template #hello>
-        <div>hello</div>
-      </template>
-    </vue-setup>
-  </div>
+  <!-- 
+    // Expose sample 
+    <ExposeParent />
+  -->
+  <!-- 
+    // Vue Setup method
+    <SetupContext title="hello" />
+    -->
+  <!-- 
+    // Watch Effect Sample
+    -->
+  <WatchEffectSample />
 </template>
 
 <style scoped>
