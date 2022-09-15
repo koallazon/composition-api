@@ -30,7 +30,8 @@ main {
 nav {
   width: 100%;
   font-size: 1.5rem;
-  padding: 10px 0;
+  padding: 10px 5px;
+  line-height: 2.5rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
