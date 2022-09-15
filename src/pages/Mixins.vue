@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <section id="user">
-      <p>{{ welcomeText }}</p>
+      <h3>{{ welcomeText }}</h3>
       <label for="username" class="font-bold">사용자 이름</label>
       <input
         id="username"
@@ -12,7 +12,7 @@
       />
     </section>
     <section id="product">
-      <p>{{ name }}</p>
+      <h3>{{ name }}</h3>
       <BaseButton label="전체" @click="changeFilterType" />
       <BaseButton label="재고" value="STOCK" @click="changeFilterType" />
       <ul v-if="hasProduct">
@@ -41,12 +41,14 @@
 </template>
 
 <script>
-import BaseButton from '../components/BaseButton.vue'
-import Card from '../components/Card.vue'
-import ProductMixin from '../mixins/productMixin'
-import BrandMixin from '../mixins/brandMixin'
-import UserMixin from '../mixins/userMixin'
-import CustomMixin from '../mixins/customMixin'
+// components
+import BaseButton from '@/components/BaseButton.vue'
+import Card from '@/components/Card.vue'
+// mixins
+import ProductMixin from '@/mixins/productMixin'
+import BrandMixin from '@/mixins/brandMixin'
+import UserMixin from '@/mixins/userMixin'
+import CustomMixin from '@/mixins/customMixin'
 
 export default {
   components: {

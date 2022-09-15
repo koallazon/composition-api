@@ -21,7 +21,7 @@ const router = createRouter({
     {
       path: '/setup-script',
       name: 'setup-script',
-      component: () => import('./pages/CompositionApiSetupScript.vue'),
+      component: () => import('./pages/SetupScript.vue'),
     },
     {
       path: '/dependency-injection',
@@ -47,6 +47,11 @@ const router = createRouter({
       path: '/vuex',
       name: 'vuex',
       component: () => import('./pages/Vuex.vue'),
+    },
+    {
+      path: '/reset-mixins',
+      name: 'reset-mixins',
+      component: () => import('./pages/ResetMixins.vue'),
     },
   ],
 })
