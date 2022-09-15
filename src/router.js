@@ -5,28 +5,43 @@ const router = createRouter({
   routes: [
     {
       path: '/options-api',
-      name: 'Option-API',
+      name: 'option-API',
       component: () => import('./pages/OptionApi.vue'),
     },
     {
       path: '/mixins',
-      name: 'Mixins',
+      name: 'mixins',
       component: () => import('./pages/Mixins.vue'),
     },
     {
       path: '/composition-api',
-      name: 'Composition-API',
+      name: 'composition-API',
       component: () => import('./pages/CompositionApi.vue'),
     },
     {
       path: '/setup-script',
-      name: 'Setup-script',
+      name: 'setup-script',
       component: () => import('./pages/CompositionApiSetupScript.vue'),
     },
     {
       path: '/dependency-injection',
-      name: 'Dependency-Injection',
+      name: 'dependency-injection',
       component: () => import('./pages/DependencyInjection.vue'),
+    },
+    {
+      path: '/readonly',
+      name: 'readonly',
+      component: () => import('./pages/Readonly.vue'),
+    },
+    {
+      path: '/watcheffect',
+      name: 'watchEffect',
+      component: () => import('./pages/WatchEffect.vue'),
+    },
+    {
+      path: '/expose',
+      name: 'setup-expose',
+      component: () => import('./pages/ExposeParent.vue'),
     },
   ],
 })

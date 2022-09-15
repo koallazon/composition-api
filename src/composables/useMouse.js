@@ -1,4 +1,4 @@
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, readonly } from 'vue'
 
 export default function useMouse() {
   const x = ref(0)
@@ -9,11 +9,16 @@ export default function useMouse() {
     y.value = event.pageY
   }
 
+  const msg = computed(() => {
+    return `x축 위치는 ${x.value}이고 y축 위치는 ${y.value}입니다.`
+  })
+
   onMounted(() => window.addEventListener('mousemove', update))
   onUnmounted(() => window.removeEventListener('mousemove', update))
 
   return {
-    x,
-    y,
+    x: readonly(x),
+    y: readonly(y),
+    msg,
   }
 }

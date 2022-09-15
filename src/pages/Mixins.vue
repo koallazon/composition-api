@@ -46,6 +46,7 @@ import Card from '../components/Card.vue'
 import ProductMixin from '../mixins/productMixin'
 import BrandMixin from '../mixins/brandMixin'
 import UserMixin from '../mixins/userMixin'
+import CustomMixin from '../mixins/customMixin'
 
 export default {
   components: {
@@ -53,10 +54,13 @@ export default {
     Card,
   },
   mixins: [ProductMixin, UserMixin, BrandMixin],
+  computed: {
+    ...CustomMixin(['Joe', 'Tom']),
+  },
   mounted() {
-    // Vue option 안에서 이름이 같을 경우 맨 마지막에 추가된 mixin이 덮어씀
-    // BrandMixin의 name이 출력됨
     console.log(this.name)
+    console.log(this.Joe)
+    console.log(this.Tom)
   },
 }
 </script>

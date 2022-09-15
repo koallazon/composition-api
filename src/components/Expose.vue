@@ -1,8 +1,9 @@
 <template>
   <p>Counter: {{ counter }}</p>
-
-  <button @click="reset">Reset</button>
-  <button @click="terminate">☠️</button>
+  <div class="mt-5">
+    <button type="button" @click="reset">Reset from children</button>
+    <button type="button" @click="terminate">Terminate from children</button>
+  </div>
 </template>
 
 <script>

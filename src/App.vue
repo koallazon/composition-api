@@ -4,12 +4,9 @@ import { useRouter } from 'vue-router'
 import useMouse from './composables/useMouse.js'
 // import ExposeParent from './components/ExposeParent.vue'
 // import SetupContext from './components/SetupContext.vue'
-import WatchEffectSample from './components/WatchEffect.vue'
 const router = useRouter()
 const routes = router.options?.routes ?? []
-const { x, y } = useMouse()
-provide('x', readonly(x))
-provide('y', readonly(y))
+provide('globalMouse', useMouse)
 </script>
 
 <template>
@@ -24,18 +21,6 @@ provide('y', readonly(y))
   <main>
     <RouterView />
   </main>
-  <!-- 
-    // Expose sample 
-    <ExposeParent />
-  -->
-  <!-- 
-    // Vue Setup method
-    <SetupContext title="hello" />
-    -->
-  <!-- 
-    // Watch Effect Sample
-    -->
-  <WatchEffectSample />
 </template>
 
 <style scoped>
@@ -43,8 +28,12 @@ main {
   margin-top: 30px;
 }
 nav {
+  width: 100%;
   font-size: 1.5rem;
   padding: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 nav span {
   margin: 0 1.5rem;
