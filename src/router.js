@@ -43,6 +43,11 @@ const router = createRouter({
       name: 'setup-expose',
       component: () => import('./pages/ExposeParent.vue'),
     },
+    {
+      path: '/vuex',
+      name: 'vuex',
+      component: () => import('./pages/Vuex.vue'),
+    },
   ],
 })
 
