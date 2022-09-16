@@ -53,6 +53,11 @@ const router = createRouter({
       name: 'reset-mixins',
       component: () => import('./pages/ResetMixins.vue'),
     },
+    {
+      path: '/shallow',
+      name: 'shallow',
+      component: () => import('./pages/ShallowReactivity.vue'),
+    },
   ],
 })
 
