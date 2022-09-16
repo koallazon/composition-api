@@ -1,12 +1,10 @@
 <script setup>
 import { provide, readonly, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import useMouse from './composables/useMouse.js'
-// import ExposeParent from './components/ExposeParent.vue'
-// import SetupContext from './components/SetupContext.vue'
+import useFetch from '@/composables/useFetch.js'
 const router = useRouter()
 const routes = router.options?.routes ?? []
-provide('globalMouse', useMouse)
+provide('globalFetch', useFetch)
 </script>
 
 <template>

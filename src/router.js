@@ -58,6 +58,11 @@ const router = createRouter({
       name: 'shallow',
       component: () => import('./pages/ShallowReactivity.vue'),
     },
+    {
+      path: '/composable',
+      name: 'composable',
+      component: () => import('./pages/Composable.vue'),
+    },
   ],
 })
 
