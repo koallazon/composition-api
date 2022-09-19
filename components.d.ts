@@ -16,6 +16,7 @@ declare module '@vue/runtime-core' {
     CountMixinCard: typeof import('./src/components/CountMixinCard.vue')['default']
     EtcComp: typeof import('./src/components/EtcComp.vue')['default']
     Expose: typeof import('./src/components/Expose.vue')['default']
+    ExposeChild: typeof import('./src/components/ExposeChild.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SetupContext: typeof import('./src/components/SetupContext.vue')['default']

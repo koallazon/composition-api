@@ -1,28 +1,33 @@
 <template>
   <div class="box">
-    <Expose ref="counter" />
+    <ExposeChild ref="counter" />
     <div class="my-3">
-      <button type="button" @click="reset">Reset from parent</button>
+      <button type="button" @click="parentReset">Reset from parent</button>
       <button type="button" @click="terminate">Terminate from parent</button>
     </div>
   </div>
 </template>
 
 <script>
-import Expose from '../components/Expose.vue'
+import ExposeChild from '../components/ExposeChild.vue'
 
 export default {
   name: 'ExposeParent',
   components: {
-    Expose,
+    ExposeChild,
   },
-  methods: {
-    reset() {
+  setup() {
+    const reset = () => {
+      // console.log('this.$refs.counter.reset', this.$refs.counter.reset)
       this.$refs.counter.reset()
-    },
-    terminate() {
+    }
+    const terminate = () => {
       this.$refs.counter.terminate()
-    },
+    }
+    return {
+      reset,
+      terminate,
+    }
   },
 }
 </script>

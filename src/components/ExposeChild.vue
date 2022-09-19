@@ -10,7 +10,7 @@
 import { ref } from 'vue'
 
 export default {
-  setup(_, { expose }) {
+  setup(_, context) {
     const counter = ref(0)
 
     const interval = setInterval(() => {
@@ -25,7 +25,7 @@ export default {
       clearInterval(interval)
     }
 
-    // expose({ reset })
+    context.expose({ reset })
 
     return {
       counter,
